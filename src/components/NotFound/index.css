@@ -1,0 +1,43 @@
+.not-found-container {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.not-found-img {
+  width: 300px;
+}
+.not-found-head {
+  font-family: DM Sans;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.not-found-para {
+  font-family: DM Sans;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.home-btn {
+  height: 48px;
+  width: 123px;
+  border-radius: 12px;
+  padding: 12px 24px 12px 24px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #f7931e;
+  color: white;
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
