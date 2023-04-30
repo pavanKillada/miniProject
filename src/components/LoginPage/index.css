@@ -15,7 +15,6 @@ form {
   width: 400px;
   border-radius: 8px;
   box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
-  padding: 40px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -24,6 +23,7 @@ form {
 .logo {
   width: 53px;
   height: 43px;
+  margin-top: 40px;
 }
 .login-side-container {
   width: 50%;
@@ -47,8 +47,12 @@ form {
   line-height: 40px;
   letter-spacing: 0em;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   margin-top: 30px;
+}
+.inputs-container {
+  width: 100%;
+  padding: 30px;
 }
 label {
   align-self: flex-start;
@@ -74,7 +78,8 @@ input {
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 .login-btn {
   height: 40px;
@@ -101,4 +106,41 @@ input {
   font-family: DM Sans;
   margin: 0;
   align-self: flex-start;
+}
+.mini-cover {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    width: 100vw;
+  }
+  .login-side-container {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
+  .tasty-kitchens {
+    display: none;
+  }
+  .login-text {
+    align-self: flex-end;
+    margin-bottom: 0;
+    padding-left: 30px;
+  }
+  .login-mini-page {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .mini-cover {
+    display: block;
+    width: 100%;
+  }
+  form {
+    min-width: 100vw;
+    height: 100vh;
+    padding-top: 0;
+  }
 }

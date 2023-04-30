@@ -1,0 +1,59 @@
+.rest-item {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.rest-item-name {
+  font-family: DM Sans;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.20000000298023224px;
+  text-align: left;
+  color: #334155;
+}
+.cuisine {
+  font-family: DM Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #64748b;
+}
+.rest-item-img {
+  height: 100px;
+  width: 160px;
+  left: 24px;
+  top: 440px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+.rest-item-rating-container {
+  display: flex;
+  align-items: center;
+}
+.rating-star {
+  font-size: 14px;
+  color: #ffcc00;
+  margin-right: 4px;
+}
+.rating-point {
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #1e293b;
+  margin: 0;
+}
+.total-ratings {
+  font-family: DM Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #64748b;
+}

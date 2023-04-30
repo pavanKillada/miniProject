@@ -19,7 +19,6 @@ class Login extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
 
     if (response.ok) {
       Cookies.set('jwt_token', data.jwt_token, {expires: 30})
@@ -59,27 +58,36 @@ class Login extends Component {
               alt="website logo"
             />
             <h1 className="tasty-kitchens">Tasty Kitchens</h1>
-            <h1 className="login-text">Login</h1>
-            <label htmlFor="username">USERNAME</label>
-            <input
-              onChange={this.onUserInput}
-              type="text"
-              id="username"
-              value={username}
-            />
-            <br />
-            <label htmlFor="password">PASSWORD</label>
-            <input
-              onChange={this.onPasswordInput}
-              type="password"
-              id="password"
-              value={password}
-            />
-            <br />
-            {fetchError !== '' && <p className="error-msg">{fetchError}</p>}
-            <button type="submit" className="login-btn">
-              Login
-            </button>
+            <div className="login-mini-page">
+              <h1 className="login-text">Login</h1>
+              <img
+                src="https://ik.imagekit.io/pavanKillada/Rectangle_1457shortBg.png?updatedAt=1680172681202"
+                alt="mini cover"
+                className="mini-cover"
+              />
+            </div>
+            <div className="inputs-container">
+              <label htmlFor="username">USERNAME</label>
+              <input
+                onChange={this.onUserInput}
+                type="text"
+                id="username"
+                value={username}
+              />
+              <br />
+              <label htmlFor="password">PASSWORD</label>
+              <input
+                onChange={this.onPasswordInput}
+                type="password"
+                id="password"
+                value={password}
+              />
+              <br />
+              {fetchError !== '' && <p className="error-msg">{fetchError}</p>}
+              <button type="submit" className="login-btn">
+                Login
+              </button>
+            </div>
           </form>
         </div>
         <div className="login-side-container"> </div>

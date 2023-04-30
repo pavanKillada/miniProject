@@ -5,19 +5,6 @@ import ProtectedRoute from './components/protectedRoute'
 import NotFound from './components/NotFound'
 import './App.css'
 
-const sortByOptions = [
-  {
-    id: 0,
-    displayText: 'Highest',
-    value: 'Highest',
-  },
-  {
-    id: 2,
-    displayText: 'Lowest',
-    value: 'Lowest',
-  },
-]
-
 const App = () => (
   <Switch>
     <Route exact path="/login" component={Login} />
@@ -25,5 +12,15 @@ const App = () => (
     <Route component={NotFound} />
   </Switch>
 )
+
+const sample = async () => {
+  const response = await fetch(
+    'http://stageapi.iguru.guru:222/api/ExamManagement/GetStudentProgressReports?schoolID=282&sectionID=2682&eXamMasID=8442&students=181521',
+  )
+  const data = await response.json()
+  console.log(data)
+}
+
+sample()
 
 export default App
