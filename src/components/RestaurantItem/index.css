@@ -2,15 +2,17 @@
   display: flex;
   width: 100%;
   margin-bottom: 20px;
+  align-items: center;
 }
 .rest-item-name {
   font-family: DM Sans;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
-  letter-spacing: 0.20000000298023224px;
+  letter-spacing: 0.2px;
   text-align: left;
   color: #334155;
+  margin: 0;
 }
 .cuisine {
   font-family: DM Sans;
@@ -22,8 +24,10 @@
   color: #64748b;
 }
 .rest-item-img {
-  height: 100px;
-  width: 160px;
+  min-width: 180px;
+  min-height: 110px;
+  max-width: 180px;
+  max-height: 110px;
   left: 24px;
   top: 440px;
   border-radius: 8px;
@@ -56,4 +60,7 @@
   letter-spacing: 0px;
   text-align: left;
   color: #64748b;
+}
+.Link {
+  text-decoration: none;
 }

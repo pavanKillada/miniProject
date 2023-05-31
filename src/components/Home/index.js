@@ -31,9 +31,9 @@ const sortByOptions = [
 class Home extends Component {
   state = {
     isLoading: true,
+    bannerLoading: true,
     offers: [],
     restaurants: [],
-    fetchStatus: false,
     activePage: 1,
     limit: 9,
     sortOption: sortByOptions[0].value,
@@ -46,6 +46,7 @@ class Home extends Component {
   }
 
   getOffers = async () => {
+    this.setState({bannerLoading: true})
     const url = 'https://apis.ccbp.in/restaurants-list/offers'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -58,11 +59,15 @@ class Home extends Component {
     const data = await response.json()
 
     if (response.ok) {
-      this.setState({offers: data.offers, fetchStatus: true, isLoading: false})
+      this.setState({
+        offers: data.offers,
+        bannerLoading: false,
+      })
     }
   }
 
   getRestaurants = async () => {
+    this.setState({isLoading: true})
     const {activePage, limit, sortOption} = this.state
     const offset = (activePage - 1) * limit
     const url = `https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${limit}&sort_by_rating=${sortOption}`
@@ -79,7 +84,6 @@ class Home extends Component {
     if (response.ok) {
       this.setState({
         restaurants: data.restaurants,
-        fetchStatus: true,
         totalRestaurants: data.total,
         isLoading: false,
       })
@@ -91,7 +95,6 @@ class Home extends Component {
   }
 
   onLeftPage = () => {
-    this.setState({isLoading: true})
     const {activePage} = this.state
     if (activePage > 1) {
       this.setState(
@@ -102,7 +105,6 @@ class Home extends Component {
   }
 
   onRightPage = () => {
-    this.setState({isLoading: true})
     const {totalRestaurants, activePage} = this.state
     if (activePage < Math.ceil(totalRestaurants / 9)) {
       this.setState(
@@ -119,6 +121,7 @@ class Home extends Component {
       activePage,
       totalRestaurants,
       isLoading,
+      bannerLoading,
     } = this.state
     const settings = {
       dots: true,
@@ -133,7 +136,7 @@ class Home extends Component {
       <div className="home-container">
         <Header />
         <div className="home-body-container">
-          {isLoading ? (
+          {bannerLoading ? (
             <div className="loader-container" data-testid="loader">
               <Loader type="TailSpin" color="#F7931E" height="50" width="50" />
             </div>
