@@ -1,0 +1,80 @@
+.cart-bg-container {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: white;
+  font-family: 'DM Sans';
+}
+.cart-item-list {
+  padding: 0;
+  margin: 20px;
+  border-bottom: 2px dashed #cbd2d9;
+  font-family: 'DM Sans';
+}
+.total-order-container {
+  padding: 20px;
+  font-family: 'DM Sans';
+  width: 100%;
+}
+.order-text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+}
+.order-price {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'DM Sans';
+  height: 85vh;
+  width: 100%;
+}
+.empty-cart-img {
+  width: 50%;
+  max-width: 350px;
+}
+.empty-cart-head {
+  font-family: DM Sans;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: center;
+}
+.empty-cart-para {
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+}
+.order-now-btn {
+  background-color: #f7931e;
+  color: white;
+  padding: 8px 15px;
+  font-family: DM Sans;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.cart-loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.place-order-btn {
+  margin-top: 30px;
+  display: block;
+  margin-left: auto;
+}

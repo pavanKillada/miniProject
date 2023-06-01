@@ -40,7 +40,6 @@ class RestaurantDetailItem extends Component {
     const url = `https://apis.ccbp.in/restaurants-list/${id}`
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
 
     if (response.ok) {
       const restaurantDetails = {

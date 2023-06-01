@@ -3,26 +3,22 @@
   min-height: 100vh;
 }
 .rest-detail-item-banner {
-  width: 100vw;
+  min-width: 100vw;
   background-image: url('https://ik.imagekit.io/pavanKillada/Group_7418_back_ground.png?updatedAt=1685541520165');
   background-color: #333333;
   background-size: cover;
   background-position: right;
   display: flex;
   font-family: 'roboto';
-  overflow: hidden;
+  align-items: center;
   justify-content: flex-start;
   margin-bottom: 30px;
 }
 .rest-detail-item-banner-img {
-  min-height: 250px;
-  min-width: 250px;
-  max-height: 250px;
-  max-width: 250px;
-  position: relative;
-  left: -40px;
-  top: -30px;
-  border-radius: 180px;
+  width: 180px;
+  height: 180px;
+  border-radius: 100px;
+  margin-right: 20px;
 }
 .banner-content {
   color: white;
@@ -64,4 +60,7 @@
   justify-content: center;
   align-items: center;
   height: 600px;
+}
+ul {
+  padding: 20px;
 }
