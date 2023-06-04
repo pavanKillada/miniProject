@@ -1,12 +1,9 @@
 .big-nav-header {
   width: 100vw;
   background: #f8fafc;
-  padding-left: 60px;
-  padding-right: 60px;
   margin-bottom: 30px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 }
 .nav-logo-container {
   display: flex;
@@ -98,8 +95,14 @@
 .btn-li {
   margin-left: auto;
 }
+.nav-content-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .big-nav-header {
     display: none;
   }

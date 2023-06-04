@@ -1,21 +1,70 @@
+/* eslint-disable react/no-unknown-property */
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
-import Loader from 'react-loader-spinner'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import {BiRupee} from 'react-icons/bi'
 import Header from '../Header'
-import CartItemView from '../CartItemView'
+import CartItem from '../CartItem'
 import './index.css'
-import CartContext from '../../ReactContext/CartContext'
 
 class Cart extends Component {
-  state = {}
+  state = {
+    cartList: [],
+    orderPlaced: false,
+  }
 
-  renderLoader = () => (
-    <div className="cart-loader" data-testid="loader">
-      <Loader type="TailSpin" color="#F7931E" height="50" width="50" />
-    </div>
-  )
+  componentDidMount() {
+    const cartData = JSON.parse(localStorage.getItem('cartData'))
+    if (cartData !== null) {
+      this.setState({cartList: cartData})
+    }
+  }
+
+  onClickGoHome = () => {
+    this.setState({orderPlaced: false})
+  }
+
+  onClickCartItemDash = id => {
+    const {cartList} = this.state
+    const foodItem = cartList.find(item => item.id === id)
+    if (foodItem.quantity <= 1) {
+      const filteredList = cartList.filter(item => item.id !== id)
+      localStorage.setItem('cartData', JSON.stringify(filteredList))
+      this.setState({cartList: filteredList})
+    } else {
+      const updatedList = cartList.map(item => {
+        if (item.id === id) {
+          const obj = item
+          obj.quantity -= 1
+          obj.totalCost = obj.cost * obj.quantity
+          return obj
+        }
+        return item
+      })
+      localStorage.setItem('cartData', JSON.stringify(updatedList))
+      this.setState({cartList: updatedList})
+    }
+  }
+
+  onClickPlaceOrder = () => {
+    localStorage.setItem('cartData', JSON.stringify([]))
+    this.setState({orderPlaced: true, cartList: []})
+  }
+
+  onClickCartItemPlus = id => {
+    const {cartList} = this.state
+    const updatedList = cartList.map(item => {
+      if (item.id === id) {
+        const obj = item
+        obj.quantity += 1
+        obj.totalCost = obj.cost * obj.quantity
+        return obj
+      }
+      return item
+    })
+    localStorage.setItem('cartData', JSON.stringify(updatedList))
+    this.setState({cartList: updatedList})
+  }
 
   renderEmptyView = () => (
     <div className="empty-cart-container">
@@ -24,7 +73,7 @@ class Cart extends Component {
         src="https://ik.imagekit.io/pavanKillada/Layer_2_emptyCart.png?updatedAt=1685617170620"
         alt="empty cart"
       />
-      <h1 className="empty-cart-head">No Orders Yet!</h1>
+      <h1 className="empty-cart-head">No Order Yet!</h1>
       <p className="empty-cart-para">
         Your cart is empty. Add something from the menu.
       </p>
@@ -36,48 +85,54 @@ class Cart extends Component {
     </div>
   )
 
-  renderCartItemView = (List, onOrder) => {
-    const {orderPlaced} = this.state
-    let cartList = List
-    if (orderPlaced) {
-      cartList = []
-    }
+  renderCartItemView = () => {
+    const {cartList} = this.state
+
     let totalPrice = 0
     cartList.forEach(element => {
       totalPrice += element.totalCost
     })
-    const onPlaceOrder = () => {
-      onOrder()
-    }
 
     return (
-      <>
+      <div className="cart-list-item-trans-container">
         <ul className="cart-item-list">
+          <li className="cart-items-heading-li">
+            <p className="cart-item-heading">Item</p>
+            <p className="cart-quantity-heading">Quantity</p>
+            <p className="cart-price-heading">Price</p>
+          </li>
           {cartList.map(item => (
-            <CartItemView key={item.id} itemDetails={item} />
+            <CartItem
+              key={item.id}
+              onClickCartItemDash={this.onClickCartItemDash}
+              onClickCartItemPlus={this.onClickCartItemPlus}
+              itemDetails={item}
+            />
           ))}
         </ul>
         <div className="total-order-container">
-          <p className="order-text">
+          <h1 className="order-text">
             Order Total :{' '}
             <span className="order-price">
-              <BiRupee />
-              {totalPrice}.00
+              <p className="order-price" testid="total-price">
+                <BiRupee />
+                {totalPrice}.00
+              </p>
             </span>
-          </p>
+          </h1>
           <button
-            onClick={onPlaceOrder}
+            onClick={this.onClickPlaceOrder}
             className="order-now-btn place-order-btn"
             type="button"
           >
             Place Order
           </button>
         </div>
-      </>
+      </div>
     )
   }
 
-  renderOrderPlacedView = onGoHome => (
+  renderOrderPlacedView = () => (
     <div className="empty-cart-container">
       <img
         className="order-placed-img"
@@ -91,58 +146,34 @@ class Cart extends Component {
         Your payment is successfully completed.
       </p>
       <Link to="/">
-        <button onClick={onGoHome} className="order-now-btn" type="button">
+        <button
+          onClick={this.onClickGoHome}
+          className="order-now-btn"
+          type="button"
+        >
           Go To Home Page
         </button>
       </Link>
     </div>
   )
 
-  renderCartView = (
-    cartList,
-    isLoading,
-    orderPlaced,
-    onClickOrder,
-    onClickGoHome,
-  ) => {
-    if (orderPlaced === false) {
-      if (cartList.length === 0) {
-        return this.renderEmptyView()
+  renderCartView = () => {
+    const {orderPlaced, cartList} = this.state
+    if (orderPlaced !== true) {
+      if (cartList.length !== 0) {
+        return this.renderCartItemView()
       }
-      if (isLoading === true) {
-        return this.renderLoader()
-      }
-      return this.renderCartItemView(cartList, onClickOrder)
+      return this.renderEmptyView()
     }
-    return this.renderOrderPlacedView(onClickGoHome)
+    return this.renderOrderPlacedView()
   }
 
   render() {
     return (
-      <CartContext.Consumer>
-        {value => {
-          const {
-            cartList,
-            isLoading,
-            orderPlaced,
-            onClickOrder,
-            onClickGoHome,
-          } = value
-
-          return (
-            <div className="cart-bg-container">
-              <Header />
-              {this.renderCartView(
-                cartList,
-                isLoading,
-                orderPlaced,
-                onClickOrder,
-                onClickGoHome,
-              )}
-            </div>
-          )
-        }}
-      </CartContext.Consumer>
+      <div className="cart-bg-container">
+        <Header />
+        {this.renderCartView()}
+      </div>
     )
   }
 }

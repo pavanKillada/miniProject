@@ -64,3 +64,9 @@
 .Link {
   text-decoration: none;
 }
+
+@media (min-width: 600px) {
+  .rest-item {
+    max-width: 320px;
+  }
+}

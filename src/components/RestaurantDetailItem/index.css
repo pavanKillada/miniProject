@@ -3,7 +3,7 @@
   min-height: 100vh;
 }
 .rest-detail-item-banner {
-  min-width: 100vw;
+  width: 100vw;
   background-image: url('https://ik.imagekit.io/pavanKillada/Group_7418_back_ground.png?updatedAt=1685541520165');
   background-color: #333333;
   background-size: cover;
@@ -15,8 +15,10 @@
   margin-bottom: 30px;
 }
 .rest-detail-item-banner-img {
-  width: 180px;
-  height: 180px;
+  min-width: 180px;
+  min-height: 180px;
+  max-width: 180px;
+  max-height: 180px;
   border-radius: 100px;
   margin-right: 20px;
 }
@@ -61,6 +63,37 @@
   align-items: center;
   height: 600px;
 }
-ul {
+.rest-details-ul {
   padding: 20px;
+}
+.rest-details-banner-content {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .rest-details-ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+  }
+  .rest-detail-item-bg-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .rest-detail-item-banner {
+    justify-content: center;
+  }
+  .rest-detail-item-banner-img {
+    border-radius: 10px;
+    min-width: 40%;
+    min-height: auto;
+    margin: 30px;
+  }
+  .rest-details-banner-content {
+    width: 80%;
+  }
 }

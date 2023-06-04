@@ -29,33 +29,44 @@ class Header extends Component {
     return (
       <div>
         <nav className="big-nav-header">
-          <Link className="links" to="/">
-            <div className="nav-logo-container">
-              <img
-                className="nav-logo"
-                src="https://ik.imagekit.io/pavanKillada/Frame_274app_logo.svg?updatedAt=1680172681164"
-                alt="website logo"
-              />
-              <h1 className="nav-logo-text">Tasty Kitchens</h1>
-            </div>
-          </Link>
-          <ul className="header-nav-tabs">
+          <div className="nav-content-container">
             <Link className="links" to="/">
-              <li className="home-nav">Home</li>
+              <div className="nav-logo-container">
+                <img
+                  className="nav-logo"
+                  src="https://ik.imagekit.io/pavanKillada/Frame_274app_logo.svg?updatedAt=1680172681164"
+                  alt="website logo"
+                />
+                <h1 className="nav-logo-text">Tasty Kitchens</h1>
+              </div>
             </Link>
-            <Link className="links" to="/cart">
-              <li className="cart-nav">Cart</li>
-            </Link>
-            <li>
-              <button
-                onClick={this.onLogoutBtn}
-                type="button"
-                className="logout-btn"
-              >
-                Logout
-              </button>
-            </li>
-          </ul>
+            <ul className="header-nav-tabs">
+              <li className="home-nav">
+                <Link className="links" to="/">
+                  <p>Home</p>
+                </Link>
+              </li>
+              <li className="cart-nav">
+                <Link className="links" to="/profile">
+                  <p>Profile</p>
+                </Link>
+              </li>
+              <li className="cart-nav">
+                <Link className="links" to="/cart">
+                  <p>Cart</p>
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={this.onLogoutBtn}
+                  type="button"
+                  className="logout-btn"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
         </nav>
         <nav className="small-nav-header">
           <Link className="links" to="/">
@@ -76,6 +87,9 @@ class Header extends Component {
           <ul className="small-header-nav-tabs">
             <Link className="links" to="/">
               <li className="home-nav">Home</li>
+            </Link>
+            <Link className="links" to="/profile">
+              <li className="cart-nav">Profile</li>
             </Link>
             <Link className="links" to="/cart">
               <li className="cart-nav">Cart</li>

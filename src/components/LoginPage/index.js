@@ -62,7 +62,7 @@ class Login extends Component {
               <h1 className="login-text">Login</h1>
               <img
                 src="https://ik.imagekit.io/pavanKillada/Rectangle_1457shortBg.png?updatedAt=1680172681202"
-                alt="mini cover"
+                alt="website login"
                 className="mini-cover"
               />
             </div>

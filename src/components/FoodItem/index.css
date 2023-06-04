@@ -39,3 +39,14 @@
   display: flex;
   align-items: center;
 }
+.food-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 800px) {
+  .food-item {
+    width: 40%;
+  }
+}
