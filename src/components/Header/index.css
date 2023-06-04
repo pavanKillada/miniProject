@@ -29,18 +29,23 @@
   list-style: none;
   padding: 0;
 }
-.home-nav {
-  color: #f7931e;
-  font-family: DM Sans;
-  font-size: 15px;
+
+.tab {
   margin-right: 30px;
-  cursor: pointer;
 }
-.cart-nav {
+
+.inactive-tab {
   color: #334155;
   font-family: DM Sans;
-  font-size: 15px;
-  margin-right: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.active-tab {
+  color: #f7931e;
+  font-family: DM Sans;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid #f7931e;
   cursor: pointer;
 }
 .logout-btn {

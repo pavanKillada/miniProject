@@ -121,7 +121,10 @@ class Home extends Component {
   }
 
   onSearchRest = event => {
-    this.setState({searchInput: event.target.value}, this.getRestaurants)
+    this.setState(
+      {searchInput: event.target.value, activePage: 1},
+      this.getRestaurants,
+    )
   }
 
   renderRestaurantsListView = () => {

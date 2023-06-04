@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {FaBars} from 'react-icons/fa'
@@ -5,9 +6,25 @@ import {MdCancel} from 'react-icons/md'
 import Cookies from 'js-cookie'
 import './index.css'
 
+const navTabs = [
+  {
+    id: 'HOME',
+    displayText: 'Home',
+  },
+  {
+    id: 'PROFILE',
+    displayText: 'Profile',
+  },
+  {
+    id: 'CART',
+    displayText: 'Cart',
+  },
+]
+
 class Header extends Component {
   state = {
     showNavBars: false,
+    activeTab: 'Home',
   }
 
   onLogoutBtn = () => {
@@ -24,8 +41,13 @@ class Header extends Component {
     this.setState({showNavBars: false})
   }
 
+  onClickTab = event => {
+    this.setState({activeTab: event.target.textContent})
+  }
+
   render() {
-    const {showNavBars} = this.state
+    const {showNavBars, activeTab} = this.state
+
     return (
       <div>
         <nav className="big-nav-header">
@@ -41,21 +63,27 @@ class Header extends Component {
               </div>
             </Link>
             <ul className="header-nav-tabs">
-              <li className="home-nav">
-                <Link className="links" to="/">
-                  <p>Home</p>
-                </Link>
-              </li>
-              <li className="cart-nav">
-                <Link className="links" to="/profile">
-                  <p>Profile</p>
-                </Link>
-              </li>
-              <li className="cart-nav">
-                <Link className="links" to="/cart">
-                  <p>Cart</p>
-                </Link>
-              </li>
+              {navTabs.map(item => (
+                <li key={item.id} tabid={item.id} className="tab">
+                  <Link
+                    className="links"
+                    to={`/${
+                      item.displayText === 'Home' ? '' : item.displayText
+                    }`}
+                  >
+                    <p
+                      onClick={this.onClickTab}
+                      className={
+                        activeTab === item.displayText
+                          ? 'active-tab'
+                          : 'inactive-tab'
+                      }
+                    >
+                      {item.displayText}
+                    </p>
+                  </Link>
+                </li>
+              ))}
               <li>
                 <button
                   onClick={this.onLogoutBtn}

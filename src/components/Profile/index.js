@@ -19,6 +19,17 @@ class Profile extends Component {
     email: 'killadapavankumar@gmail.com',
   }
 
+  componentDidMount() {
+    const userDetails = JSON.parse(localStorage.getItem('user_data'))
+    if (userDetails !== null) {
+      this.setState({
+        name: userDetails.name,
+        phone: userDetails.phone,
+        email: userDetails.email,
+      })
+    }
+  }
+
   onUsername = event => {
     this.setState({name: event.target.value})
   }
@@ -36,6 +47,13 @@ class Profile extends Component {
   }
 
   onSave = () => {
+    const {name, phone, email} = this.state
+    const userDetails = {
+      name,
+      phone,
+      email,
+    }
+    localStorage.setItem('user_data', JSON.stringify(userDetails))
     this.setState({editing: false})
   }
 
@@ -94,7 +112,7 @@ class Profile extends Component {
                   onChange={this.onPhoneNumber}
                   value={phone}
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder="Enter your ph-no"
                   className="profile-inputs"
                   id="phone"
                 />
@@ -107,7 +125,7 @@ class Profile extends Component {
             </div>
             <hr className="hr" />
             <label className="profile-labels" htmlFor="email">
-              E_MAIL:
+              E-MAIL:
             </label>
             <div className="profile-details-container">
               {editing ? (
@@ -116,7 +134,7 @@ class Profile extends Component {
                   value={email}
                   id="email"
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder="Enter your e-mail"
                   className="profile-inputs"
                 />
               ) : (
