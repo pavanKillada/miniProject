@@ -24,7 +24,6 @@ const navTabs = [
 class Header extends Component {
   state = {
     showNavBars: false,
-    activeTab: 'Home',
   }
 
   onLogoutBtn = () => {
@@ -41,12 +40,8 @@ class Header extends Component {
     this.setState({showNavBars: false})
   }
 
-  onClickTab = event => {
-    this.setState({activeTab: event.target.textContent})
-  }
-
   render() {
-    const {showNavBars, activeTab} = this.state
+    const {showNavBars} = this.state
 
     return (
       <div>
@@ -64,21 +59,14 @@ class Header extends Component {
             </Link>
             <ul className="header-nav-tabs">
               {navTabs.map(item => (
-                <li key={item.id} tabid={item.id} className="tab">
+                <li key={item.id} className="tab">
                   <Link
                     className="links"
                     to={`/${
                       item.displayText === 'Home' ? '' : item.displayText
                     }`}
                   >
-                    <p
-                      onClick={this.onClickTab}
-                      className={
-                        activeTab === item.displayText
-                          ? 'active-tab'
-                          : 'inactive-tab'
-                      }
-                    >
+                    <p onClick={this.onClickTab} className="inactive-tab">
                       {item.displayText}
                     </p>
                   </Link>
@@ -114,13 +102,13 @@ class Header extends Component {
         {showNavBars && (
           <ul className="small-header-nav-tabs">
             <Link className="links" to="/">
-              <li className="home-nav">Home</li>
+              <li className="tab inactive-tab">Home</li>
             </Link>
             <Link className="links" to="/profile">
-              <li className="cart-nav">Profile</li>
+              <li className="tab inactive-tab">Profile</li>
             </Link>
             <Link className="links" to="/cart">
-              <li className="cart-nav">Cart</li>
+              <li className="tab inactive-tab">Cart</li>
             </Link>
             <li>
               <button
