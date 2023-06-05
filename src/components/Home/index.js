@@ -38,7 +38,7 @@ class Home extends Component {
     restaurants: [],
     activePage: 1,
     limit: 9,
-    sortOption: sortByOptions[0].value,
+    sortOption: sortByOptions[1].value,
     totalRestaurants: 0,
     searchInput: '',
   }
@@ -131,7 +131,7 @@ class Home extends Component {
     const {restaurants, isLoading, totalRestaurants} = this.state
     if (isLoading) {
       return (
-        <div className="loader-container" testid="loader">
+        <div className="loader-container" testid="restaurants-list-loader">
           <Loader type="TailSpin" color="#F7931E" height="50" width="50" />
         </div>
       )
@@ -164,6 +164,7 @@ class Home extends Component {
       totalRestaurants,
       bannerLoading,
       searchInput,
+      sortOption,
     } = this.state
     const settings = {
       dots: true,
@@ -205,8 +206,8 @@ class Home extends Component {
               <div>
                 <h1 className="content-heading">Popular Restaurants</h1>
                 <p className="content-para">
-                  Select Your favorite restaurant special dish and make your day
-                  happy...
+                  Select Your favourite restaurant special dish and make your
+                  day happy...
                 </p>
               </div>
               <div className="sort-container">
@@ -223,9 +224,13 @@ class Home extends Component {
                 <div className="sort-text-container">
                   <label className="sort-text" htmlFor="sort">
                     <MdSort className="sort-img" />
-                    Sort by
+                    <p>Sort by</p>
                   </label>
-                  <select onChange={this.onSelectSortOption}>
+                  <select
+                    id="sort"
+                    value={sortOption}
+                    onChange={this.onSelectSortOption}
+                  >
                     {sortByOptions.map(eachOpt => (
                       <option key={eachOpt.id} value={eachOpt.value}>
                         {eachOpt.displayText}
@@ -238,29 +243,32 @@ class Home extends Component {
             {this.renderRestaurantsListView()}
           </div>
         </div>
-        <div className="page-container">
-          <button
-            className="arrow-btns"
-            onClick={this.onLeftPage}
-            type="button"
-            testid="pagination-left-button"
-          >
-            <BsArrowLeftSquare className="page-arrows" />
-          </button>
-          <div className="page-text">
-            <span testid="active-page-number">
-              {activePage} of {Math.ceil(totalRestaurants / 9)}
-            </span>
+        {totalRestaurants !== 0 && (
+          <div className="page-container">
+            <button
+              className="arrow-btns"
+              onClick={this.onLeftPage}
+              type="button"
+              testid="pagination-left-button"
+            >
+              <BsArrowLeftSquare className="page-arrows" />
+            </button>
+            <div className="page-text">
+              <p>
+                <span testid="active-page-number">{activePage}</span> of{' '}
+                {Math.ceil(totalRestaurants / 9)}
+              </p>
+            </div>
+            <button
+              className="arrow-btns"
+              onClick={this.onRightPage}
+              type="button"
+              testid="pagination-right-button"
+            >
+              <BsArrowRightSquare className="page-arrows" />
+            </button>
           </div>
-          <button
-            className="arrow-btns"
-            onClick={this.onRightPage}
-            type="button"
-            testid="pagination-right-button"
-          >
-            <BsArrowRightSquare className="page-arrows" />
-          </button>
-        </div>
+        )}
         <Footer />
       </div>
     )

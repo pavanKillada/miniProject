@@ -112,7 +112,7 @@ class Cart extends Component {
         </ul>
         <div className="total-order-container">
           <h1 className="order-text">
-            Order Total :{' '}
+            Order Total:
             <span className="order-price">
               <p className="order-price" testid="total-price">
                 <BiRupee />

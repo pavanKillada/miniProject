@@ -32,13 +32,11 @@ const FoodItem = props => {
         <div className="rest-item-rating-container">
           <p className="cuisine rest-item-rating-container price">
             <BiRupee />
-            {cost}.00
+            {cost}
           </p>
           <div className="rest-item-rating-container">
             <HiStar className="rating-star" />
-            <p className="rating-point">
-              {rating.toString().length === 1 ? `${rating}.0` : rating}
-            </p>
+            <p className="rating-point">{rating}</p>
           </div>
         </div>
 
