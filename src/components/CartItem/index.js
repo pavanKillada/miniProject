@@ -14,7 +14,7 @@ const CartItem = props => {
     onClickCartItemPlus(id)
   }
   return (
-    <li testid="cartItem" className="cart-list-item">
+    <li className="cart-list-item">
       <div className="cart-list-item-container" testid="cartItem">
         <img src={imageUrl} alt={name} className="cart-list-item-img" />
         <div className="cart-list-item-content">
@@ -40,10 +40,10 @@ const CartItem = props => {
               <BsPlusSquare />
             </button>
           </div>
-          <p testid="total-price" className="cart-list-item-cost">
+          <div className="cart-list-item-cost">
             <BiRupee />
-            {totalCost}
-          </p>
+            <p testid="total-price">{totalCost}</p>
+          </div>
         </div>
       </div>
     </li>

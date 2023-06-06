@@ -139,11 +139,9 @@ class Cart extends Component {
         src="https://ik.imagekit.io/pavanKillada/Vectortick.png?updatedAt=1680172681119"
         alt="order placed"
       />
-      <p className="empty-cart-head">Payment Successful</p>
+      <h1 className="empty-cart-head">Payment Successful</h1>
       <p className="empty-cart-para">
-        Thank you for ordering
-        <br />
-        Your payment is successfully completed.
+        Thank you for ordering Your payment is successfully completed.
       </p>
       <Link to="/">
         <button
