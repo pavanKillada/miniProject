@@ -42,7 +42,7 @@ const CartItem = props => {
           </div>
           <div className="cart-list-item-cost">
             <BiRupee />
-            <p testid="total-price">{totalCost}</p>
+            <p>{totalCost}</p>
           </div>
         </div>
       </div>

@@ -116,7 +116,7 @@ class Cart extends Component {
             <span className="order-price">
               <p className="order-price" testid="total-price">
                 <BiRupee />
-                {totalPrice}.00
+                {totalPrice}
               </p>
             </span>
           </h1>

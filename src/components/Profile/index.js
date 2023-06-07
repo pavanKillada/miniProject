@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {FaMobileAlt} from 'react-icons/fa'
+import {FaMobileAlt, FaRegAddressCard} from 'react-icons/fa'
 import {ImProfile} from 'react-icons/im'
 import {GiSaveArrow} from 'react-icons/gi'
 import {
@@ -17,6 +17,8 @@ class Profile extends Component {
     name: 'K. Pavan Kumar',
     phone: '9030960865',
     email: 'killadapavankumar@gmail.com',
+    address:
+      'H-no. 8-373/1 road-6 sai baba nagar, padma nagar phase-2, quthbullapur, chintal, hyderabad, 500055.',
   }
 
   componentDidMount() {
@@ -46,19 +48,24 @@ class Profile extends Component {
     this.setState({editing: true})
   }
 
+  onAddress = event => {
+    this.setState({address: event.target.value})
+  }
+
   onSave = () => {
-    const {name, phone, email} = this.state
+    const {name, phone, email, address} = this.state
     const userDetails = {
       name,
       phone,
       email,
+      address,
     }
     localStorage.setItem('user_data', JSON.stringify(userDetails))
     this.setState({editing: false})
   }
 
   render() {
-    const {editing, name, email, phone} = this.state
+    const {editing, name, email, phone, address} = this.state
     return (
       <div className="profile-bg-container">
         <Header />
@@ -90,17 +97,17 @@ class Profile extends Component {
                 <input
                   type="text"
                   placeholder="Enter your name"
-                  className="profile-inputs"
+                  className="profile-inputs inputs-width"
                   id="username"
                   value={name}
                   onChange={this.onUsername}
                 />
               ) : (
-                <p id="username" className="profile-details">
+                <p id="username" className="profile-details inputs-width">
                   {name}
                 </p>
               )}
-              <AiOutlineUser />
+              <AiOutlineUser className="icons" />
             </div>
             <hr className="hr" />
             <label className="profile-labels" htmlFor="phone">
@@ -113,15 +120,15 @@ class Profile extends Component {
                   value={phone}
                   type="text"
                   placeholder="Enter your ph-no"
-                  className="profile-inputs"
+                  className="profile-inputs inputs-width"
                   id="phone"
                 />
               ) : (
-                <p id="phone" className="profile-details">
+                <p id="phone" className="profile-details inputs-width">
                   {phone}
                 </p>
               )}
-              <AiOutlineMobile />
+              <AiOutlineMobile className="icons" />
             </div>
             <hr className="hr" />
             <label className="profile-labels" htmlFor="email">
@@ -135,14 +142,35 @@ class Profile extends Component {
                   id="email"
                   type="text"
                   placeholder="Enter your e-mail"
-                  className="profile-inputs"
+                  className="profile-inputs inputs-width"
                 />
               ) : (
-                <p id="email" className="profile-details">
+                <p id="email" className="profile-details inputs-width">
                   {email}
                 </p>
               )}
-              <AiOutlineMail />
+              <AiOutlineMail className="icons" />
+            </div>
+            <hr className="hr" />
+            <label className="profile-labels" htmlFor="address">
+              ADDRESS:
+            </label>
+            <div className="profile-details-container">
+              {editing ? (
+                <input
+                  onChange={this.onAddress}
+                  value={address}
+                  id="address"
+                  type="text"
+                  placeholder="Enter your address"
+                  className="profile-inputs inputs-width"
+                />
+              ) : (
+                <p id="address" className="profile-details inputs-width">
+                  {address}
+                </p>
+              )}
+              <FaRegAddressCard className="icons" />
             </div>
             <hr className="hr" />
             {!editing ? (
