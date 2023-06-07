@@ -28,6 +28,7 @@ class Profile extends Component {
         name: userDetails.name,
         phone: userDetails.phone,
         email: userDetails.email,
+        address: userDetails.address,
       })
     }
   }
