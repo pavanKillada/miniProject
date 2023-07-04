@@ -65,16 +65,20 @@
 }
 .rest-details-ul {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .rest-details-banner-content {
   display: flex;
   align-items: center;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .rest-details-ul {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     width: 80%;

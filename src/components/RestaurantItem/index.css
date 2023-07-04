@@ -1,6 +1,7 @@
 .rest-item {
   display: flex;
-  width: 100%;
+  min-width: 320px;
+  max-width: 350px;
   margin-bottom: 20px;
   align-items: center;
 }
